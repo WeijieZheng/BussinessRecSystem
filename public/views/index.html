@@ -189,7 +189,7 @@
 
               <div class="row">
                   <div class="col-lg-9 main-chart">
-                    <div id="baidu-map">
+                    <div id="baidu-map" style="height: 100%; width: 100%">
                     </div>
           
                   </div><!-- /col-lg-9 END SECTION MIDDLE -->
@@ -341,8 +341,17 @@
   <script src="http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular.min.js"></script>
   <script src="/controllers/baidumap.js"></script>
   <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> 
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=m7opgMGTp9ZGjkbhtvoClfOv"></script>
   <!--script type="text/javascript" src="javascripts/jquery.gritter.js"></script>
   <script type="text/javascript" src="javascripts/gritter-conf.js"></script-->
   
 </body>
 </html>
+<script type="text/javascript">
+  // 百度地图API功能
+  var map = new BMap.Map("baidu-map");
+  map.centerAndZoom(new BMap.Point(117.269945,31.86713), 13);
+  map.enableScrollWheelZoom(true);
+  var index = 0;
+  var myGeo = new BMap.Geocoder();
+</script>
