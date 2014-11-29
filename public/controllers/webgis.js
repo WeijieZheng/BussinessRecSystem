@@ -1,38 +1,35 @@
 function webGis($scope) {
 	$scope.loadingData = function () {
-	    require(["dojo/parser", "dojo/ready", "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/dom", "esri/map", "esri/geometry/Extent", "esri/urlUtils", "esri/arcgis/utils", "esri/dijit/Legend", "esri/dijit/Scalebar", "dojo/domReady!"], 
+	    $scope.loadMap();
+      $scope.loadLayer();
+	}
+  $scope.loadMap = function () {
+    require(["dojo/parser", "dojo/ready", "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/dom", "esri/map", "esri/geometry/Extent", "esri/urlUtils", "esri/arcgis/utils", "esri/dijit/Legend", "esri/dijit/Scalebar", "dojo/domReady!"], 
         function( parser, ready, BorderContainer, ContentPane, dom, Map, Extent, urlUtils, arcgisUtils, Legend, Scalebar) {
         ready(function(){
         parser.parse();
         var webmap = {};
         webmap.item = {
-          "title":"frist map"
+          "title":"feng xian"
         };
         webmap.itemData = {
           "operationalLayers": [{
             "url": "http://192.168.2.127:6080/arcgis/rest/services/webgis/cx/MapServer",
             "visibility": true,
             "opacity": 0.75,
-            "title": "Soil Survey Map",
-            "itemId": "204d94c9b1374de9a21574c9efa31164"
+            "title": "",
           }],
           "baseMap": {
             "baseMapLayers": [{
               "opacity": 1,
               "visibility": true,
               "url": "http://192.168.2.127:6080/arcgis/rest/services/webgis/cx/MapServer"
-              },{
-              "isReference": true,
-              "opacity": 1,
-              "visibility": true,
-              "url": "http://192.168.2.127:6080/arcgis/rest/services/webgis/cx/MapServer"
               }],
-            "title": "World_Terrain_Base"
+            "title": "feng xian"
           },
           "version": "1.1"
         };
         dom.byId("title").innerHTML = webmap.item.title;
-        dom.byId("subtitle").innerHTML = webmap.item.snippet;
         arcgisUtils.createMap(webmap,"map").then(function(response){
           console.log(response);
           var map = response.map;
@@ -52,5 +49,24 @@ function webGis($scope) {
         });
         });
       });
-	}
+  }
+  $scope.loadLayer = function () {
+    var featureLayer, pageInfo, grid;
+    require([
+      "esri/layers/FeatureLayer", "esri/tasks/query", "esri/TimeExtent"
+    ], function(
+      FeatureLayer, Query, TimeExtent
+    ) {
+      // create a feature layer
+      featureLayer = new FeatureLayer("http://192.168.2.127:6080/arcgis/rest/services/webgis/cx/MapServer/2", {
+        outFields:["*"]
+      });
+      console.log(featureLayer);
+      var query = new Query();
+      query.where = "";
+      featureLayer.queryIds(query, function (objectIds) {
+        console.log(fetchRecords(objectIds));
+      });
+    });
+  }
 }

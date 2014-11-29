@@ -3,25 +3,346 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
     <title>Loading the frist map</title>
 
-    <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/dojo/dijit/themes/claro/claro.css"/>
-    <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/esri/css/esri.css" />
+  <!--   <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/dojo/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/esri/css/esri.css" /> -->
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/bootstrap.css" />
+    <link rel="stylesheet" href="stylesheets/font-awesome.css" />
 
-    <script src="http://js.arcgis.com/3.10/"></script>
-    <script src="javascripts/jquery-2.1.1.min.js"></script>
-    <script src="http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular.min.js"></script>
-    <script src="/controllers/webgis.js"></script>
   </head>
 
-  <body class="claro" ng-controller='webGis' ng-init='loadingData()'>
-    <div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline'" style="width:100%; height:100%;">
-      <div id="header" class="shadow roundedCorners" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
-        <div id="title"></div>
-        <div id="subtitle"></div>
-      </div>
-      <div id="map" class="roundedCorners shadow" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"></div>
-      <div id="rightPane" class="roundedCorners shadow" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'right'" >
-        <div id="legend"></div>
-      </div>
-    </div>
-  </body>
+ <body style="">
+
+  <section id="container">
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+          <div class="sidebar-toggle-box">
+              <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+          </div>
+          <!--logo start-->
+          <a href="index.html" class="logo"><b>DASHGUM FREE</b></a>
+          <!--logo end-->
+          <div class="nav notify-row" id="top_menu">
+              <!--  notification start -->
+              <ul class="nav top-menu">
+                  <!-- settings start -->
+                  <li class="dropdown">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                          <i class="fa fa-tasks"></i>
+                          <span class="badge bg-theme">4</span>
+                      </a>
+                      <ul class="dropdown-menu extended tasks-bar">
+                          <div class="notify-arrow notify-arrow-green"></div>
+                          <li>
+                              <p class="green">You have 4 pending tasks</p>
+                          </li>
+                          <li>
+                              <a href="index.html#">
+                                  <div class="task-info">
+                                      <div class="desc">DashGum Admin Panel</div>
+                                      <div class="percent">40%</div>
+                                  </div>
+                                  <div class="progress progress-striped">
+                                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                          <span class="sr-only">40% Complete (success)</span>
+                                      </div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="index.html#">
+                                  <div class="task-info">
+                                      <div class="desc">Database Update</div>
+                                      <div class="percent">60%</div>
+                                  </div>
+                                  <div class="progress progress-striped">
+                                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                          <span class="sr-only">60% Complete (warning)</span>
+                                      </div>
+                                  </div>
+                              </a>
+                          </li>
+                          <li class="external">
+                              <a href="#">See All Tasks</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <!-- settings end -->
+                  <!-- inbox dropdown start-->
+                  <li id="header_inbox_bar" class="dropdown">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                          <i class="fa fa-envelope-o"></i>
+                          <span class="badge bg-theme">5</span>
+                      </a>
+                      <ul class="dropdown-menu extended inbox">
+                          <div class="notify-arrow notify-arrow-green"></div>
+                          <li>
+                              <p class="green">You have 5 new messages</p>
+                          </li>
+                          <li>
+                              <a href="index.html#">
+                                  <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
+                                  <span class="subject">
+                                  <span class="from">Zac Snider</span>
+                                  <span class="time">Just now</span>
+                                  </span>
+                                  <span class="message">
+                                      Hi mate, how is everything?
+                                  </span>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="index.html#">
+                                  <span class="photo"><img alt="avatar" src="assets/img/ui-divya.jpg"></span>
+                                  <span class="subject">
+                                  <span class="from">Divya Manian</span>
+                                  <span class="time">40 mins.</span>
+                                  </span>
+                                  <span class="message">
+                                   Hi, I need your help with this.
+                                  </span>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="index.html#">See all messages</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <!-- inbox dropdown end -->
+              </ul>
+              <!--  notification end -->
+          </div>
+          <div class="top-menu">
+            <ul class="nav pull-right top-menu">
+                  <li><a class="logout" href="login.html">Logout</a></li>
+            </ul>
+          </div>
+      </header>
+      <!--header end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar" class="nav-collapse " style="overflow: hidden; outline: none;" tabindex="5000">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+                  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                  <h5 class="centered">Marcel Newman</h5>
+                    
+                  <li class="mt">
+                      <a class="active" href="index.html">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu dcjq-parent-li">
+                      <a href="javascript:;" class="dcjq-parent">
+                          <i class="fa fa-cogs"></i>
+                          <span>Components</span>
+                      <span class="dcjq-icon"></span></a>
+                      <ul class="sub" style="display: none;">
+                          <li><a href="calendar.html">Calendar</a></li>
+                          <li><a href="gallery.html">Gallery</a></li>
+                          <li><a href="todo_list.html">Todo List</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu dcjq-parent-li">
+                      <a href="javascript:;" class="dcjq-parent">
+                          <i class="fa fa-book"></i>
+                          <span>Extra Pages</span>
+                      <span class="dcjq-icon"></span></a>
+                      <ul class="sub" style="display: none;">
+                          <li><a href="blank.html">Blank Page</a></li>
+                          <li><a href="login.html">Login</a></li>
+                          <li><a href="lock_screen.html">Lock Screen</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu dcjq-parent-li">
+                      <a href="javascript:;" class="dcjq-parent">
+                          <i class="fa fa-tasks"></i>
+                          <span>Forms</span>
+                      <span class="dcjq-icon"></span></a>
+                      <ul class="sub" style="display: none;">
+                          <li><a href="form_component.html">Form Components</a></li>
+                      </ul>
+                  </li>
+
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-lg-9 main-chart">
+                    <div id="baidu-map">
+                    </div>
+          
+                  </div><!-- /col-lg-9 END SECTION MIDDLE -->
+                  
+                  
+      <!-- **********************************************************************************************************************************************************
+      RIGHT SIDEBAR CONTENT
+      *********************************************************************************************************************************************************** -->                  
+                  
+                  <div class="col-lg-3 ds">
+                    <!--COMPLETED ACTIONS DONUTS CHART-->
+            <h3>NOTIFICATIONS</h3>
+                                        
+                      <!-- First Action -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                          <p><muted>2 Minutes Ago</muted><br>
+                             <a href="#">James Brown</a> subscribed to your newsletter.<br>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Second Action -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                          <p><muted>3 Hours Ago</muted><br>
+                             <a href="#">Diana Kennedy</a> purchased a year subscription.<br>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Third Action -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                          <p><muted>7 Hours Ago</muted><br>
+                             <a href="#">Brandon Page</a> purchased a year subscription.<br>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Fourth Action -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                          <p><muted>11 Hours Ago</muted><br>
+                             <a href="#">Mark Twain</a> commented your post.<br>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Fifth Action -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        </div>
+                        <div class="details">
+                          <p><muted>18 Hours Ago</muted><br>
+                             <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br>
+                          </p>
+                        </div>
+                      </div>
+
+                       <!-- USERS ONLINE SECTION -->
+            <h3>TEAM MEMBERS</h3>
+                      <!-- First Member -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <img class="img-circle" src="assets/img/ui-divya.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                          <p><a href="#">DIVYA MANIAN</a><br>
+                             <muted>Available</muted>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Second Member -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <img class="img-circle" src="assets/img/ui-sherman.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                          <p><a href="#">DJ SHERMAN</a><br>
+                             <muted>I am Busy</muted>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Third Member -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <img class="img-circle" src="assets/img/ui-danro.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                          <p><a href="#">DAN ROGERS</a><br>
+                             <muted>Available</muted>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Fourth Member -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <img class="img-circle" src="assets/img/ui-zac.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                          <p><a href="#">Zac Sniders</a><br>
+                             <muted>Available</muted>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- Fifth Member -->
+                      <div class="desc">
+                        <div class="thumb">
+                          <img class="img-circle" src="assets/img/ui-sam.jpg" width="35px" height="35px" align="">
+                        </div>
+                        <div class="details">
+                          <p><a href="#">Marcel Newman</a><br>
+                             <muted>Available</muted>
+                          </p>
+                        </div>
+                      </div>
+                      
+                  </div><!-- /col-lg-3 -->
+              </div><!-- --/row ---->
+          </section>
+      </section>
+
+      <!--main content end-->
+      <!--footer start-->
+      <footer class="site-footer">
+          <div class="text-center">
+              2014 - Alvarez.is
+              <a href="index.html#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+      <!--footer end-->
+  </section>
+
+  <!-- js placed at the end of the document so the pages load faster -->
+  <!--script src="http://js.arcgis.com/3.10/"></script-->
+  <script src="javascripts/jquery-2.1.1.min.js"></script>
+  <script src="http://cdn.bootcss.com/angular.js/1.3.0-beta.8/angular.min.js"></script>
+  <script src="/controllers/baidumap.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> 
+  <!--script type="text/javascript" src="javascripts/jquery.gritter.js"></script>
+  <script type="text/javascript" src="javascripts/gritter-conf.js"></script-->
+  
+</body>
 </html>
